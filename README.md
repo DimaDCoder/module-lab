@@ -1,0 +1,2 @@
+Module app:
+ - rest-app
