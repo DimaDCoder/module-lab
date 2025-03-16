@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <property name="uuid_function" value="gen_random_uuid()" dbms="postgresql"/>
+
+    <changeSet id="1739472228476-1" author="DimaDCoder">
+        <createTable tableName="group_g">
+            <column name="id" type="uuid" defaultValueComputed="${uuid_function}">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_active" type="boolean" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_create" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_update" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1739642515187-1" author="DimaDCoder">
+        <createTable tableName="user_u">
+            <column name="id" type="varchar">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="first_name" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="middle_name" type="varchar">
+            </column>
+            <column name="is_active" type="boolean" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_create" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_update" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1739722600988-1" author="DimaDCoder">
+        <createTable tableName="group_user">
+            <column name="group_id" type="uuid"/>
+            <column name="user_id" type="varchar"/>
+
+            <column name="is_curator" type="boolean" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_create" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey
+                columnNames="group_id, user_id"
+                tableName="group_user"/>
+
+        <addForeignKeyConstraint baseTableName="group_user" baseColumnNames="group_id"
+                                 constraintName="fk_group_user__group"
+                                 referencedTableName="group_g"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="group_user" baseColumnNames="user_id"
+                                 constraintName="fk_group_user__user"
+                                 referencedTableName="user_u"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>
