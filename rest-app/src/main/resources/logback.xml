@@ -7,7 +7,7 @@
         </encoder>
     </appender>
 
-<!--    <logger additivity="false" level="debug" name="org.smolski.restapp">-->
+<!--    <logger additivity="false" level="debug" name="dima.d.coder.restapp">-->
 <!--        <appender-ref ref="Console"/>-->
 <!--    </logger>-->
 

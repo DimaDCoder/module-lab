@@ -35,9 +35,9 @@ openApiGenerate {
     generatorName.set("spring")
     inputSpec.set(layout.projectDirectory.file("src/main/resources/rest-app.yaml").asFile.path)
     outputDir.set(layout.buildDirectory.dir("generated").get().asFile.path)
-    apiPackage.set("org.smolski.api")
-    modelPackage.set("org.smolski.model")
-    invokerPackage.set("org.smolski.invoker")
+    apiPackage.set("dima.d.coder.api")
+    modelPackage.set("dima.d.coder.model")
+    invokerPackage.set("dima.d.coder.invoker")
 
     configOptions.set(
         mapOf(

@@ -16,7 +16,7 @@ plugins {
 }
 
 allprojects {
-	group = "org.smolski"
+	group = "dima.d.coder"
 	version = "0.0.1-SNAPSHOT"
 
 	repositories {
