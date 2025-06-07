@@ -1,24 +1,24 @@
 openapi: "3.0.0"
 info:
   version: 1.0.0
-  title: Base Rest Project
+  title: Rest App
 tags:
   - name: groups
-    description: Everything about Groups
+    description: Groups
 paths:
   /groups:
     get:
       tags:
         - groups
       summary: List groups
-      operationId: getGroupsByFilter
+      operationId: getGroupsByParams
       parameters:
-        - name: filterParams
+        - name: params
           in: query
-          description: Group filter
+          description: List groups params
           required: true
           schema:
-            $ref: "#/components/schemas/GroupFilter"
+            $ref: "#/components/schemas/GroupParams"
       responses:
         '200':
           description: List groups
@@ -31,7 +31,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: "#/components/schemas/ErrorResponse"
 
   /groups/{groupId}:
     get:
@@ -59,11 +59,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: "#/components/schemas/ErrorResponse"
 components:
   schemas:
 
-    GroupFilter:
+    GroupParams:
       required:
         - page
         - size
@@ -118,7 +118,7 @@ components:
           items:
             $ref: "#/components/schemas/GroupResponse"
 
-    Error:
+    ErrorResponse:
       required:
         - code
         - message

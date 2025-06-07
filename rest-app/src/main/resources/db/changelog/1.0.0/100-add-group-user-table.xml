@@ -4,8 +4,6 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-    <property name="uuid_function" value="gen_random_uuid()" dbms="postgresql"/>
-
     <changeSet id="1739472228476-1" author="DimaDCoder">
         <createTable tableName="group_g">
             <column name="id" type="uuid" defaultValueComputed="${uuid_function}">
@@ -15,6 +13,9 @@
                 <constraints nullable="false"/>
             </column>
             <column name="is_active" type="boolean" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="author_id" type="varchar">
                 <constraints nullable="false"/>
             </column>
             <column name="date_create" type="timestamp">

@@ -1,5 +1,6 @@
 package dima.d.coder.restapp.group.model.entity;
 
+import dima.d.coder.restapp.user.model.entity.UserEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -29,8 +30,8 @@ public class GroupEntity {
     @Builder.Default
     Boolean isActive = true;
 
-//    @ManyToOne
-//    UserEntity author;
+    @ManyToOne
+    UserEntity author;
 
     @CreationTimestamp
     OffsetDateTime dateCreate;

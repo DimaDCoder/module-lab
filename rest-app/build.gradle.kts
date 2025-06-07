@@ -22,15 +22,6 @@ dependencies {
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 }
 
-//hibernate {
-//    enhancement {
-//        enableLazyInitialization = true
-//        enableDirtyTracking = true
-//        enableAssociationManagement = true
-//        enableExtendedEnhancement = false
-//    }
-//}
-
 openApiGenerate {
     generatorName.set("spring")
     inputSpec.set(layout.projectDirectory.file("src/main/resources/rest-app.yaml").asFile.path)
@@ -41,12 +32,12 @@ openApiGenerate {
 
     configOptions.set(
         mapOf(
+            "dateLibrary" to "java8",
             "interfaceOnly" to "true",
             "useSpringBoot3" to "true",
-            "dateLibrary" to "java8",
-//            "serializableModel" to "true",
-//            "skipDefaultInterface" to "true",
-            "generateSupportingFiles" to "false"
+            "generateSupportingFiles" to "false",
+            "useBeanValidation" to "false",
+            "useTags" to "true"
         )
     )
 }
